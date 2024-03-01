@@ -11,4 +11,5 @@ export const TODO_INIT_VALUE: TaskInfo = {
   task: '',
   description: '',
   status: 'todo',
+  id: '',
 };
