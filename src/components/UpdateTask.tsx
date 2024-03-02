@@ -1,12 +1,11 @@
 import { TaskInfo } from '../typeings';
-import Card from './common/Card';
 import FlexBox from './common/FlexBox';
 import { ChangeEvent, useState } from 'react';
-import Select from './common/Select';
 import { TODO_STATUS_OPTIONS } from '../const';
 import InputFields from './common/InputFields';
 import InputArea from './common/InputArea';
 import Button from './common/Button';
+import Select2 from './common/Select2';
 
 interface TaskItemProps {
   data: TaskInfo;
@@ -29,8 +28,12 @@ function UpdateTask({ data, onUpdate, onCancelUpdate }: TaskItemProps) {
   };
 
   return (
-    <Card className="px-8 py-4 w-full dark:bg-slate-500">
-      <FlexBox direction="column" gap={4}>
+    <FlexBox
+      className="p-4 rounded-box w-full shadow-xl"
+      direction="column"
+      gap={20}
+    >
+      <FlexBox direction="column" gap={5} className="w-full">
         <InputFields
           value={task?.task}
           onChange={onChangeHandler}
@@ -42,26 +45,27 @@ function UpdateTask({ data, onUpdate, onCancelUpdate }: TaskItemProps) {
           onChange={onChangeHandler}
           name="description"
         />
-        <Select
-          opstions={TODO_STATUS_OPTIONS}
+      </FlexBox>
+      <FlexBox gap={10}>
+        <Select2
+          options={TODO_STATUS_OPTIONS}
           value={task?.status}
           name="status"
           onChange={onChangeHandler}
         />
-        <FlexBox gap={10}>
-          <Button
-            label="Update"
-            varient="danger"
-            onClick={() => onUpdate && onUpdate(task)}
-          />
-          <Button
-            label="Cancel"
-            varient="secondary"
-            onClick={() => onCancelUpdate && onCancelUpdate()}
-          />
-        </FlexBox>
+        <Button
+          label="Update"
+          varient="primary"
+          onClick={() => onUpdate && onUpdate(task)}
+        />
+        <Button
+          label="Cancel"
+          varient="secondary"
+          outline
+          onClick={() => onCancelUpdate && onCancelUpdate()}
+        />
       </FlexBox>
-    </Card>
+    </FlexBox>
   );
 }
 

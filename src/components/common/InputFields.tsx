@@ -1,30 +1,36 @@
 import { ChangeEvent } from 'react';
+import { ClassNameType } from '../../typeings';
 
 interface InputFieldsProps {
   placeholder?: string;
   value?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   name?: string;
+  className?: ClassNameType;
   error?: boolean;
 }
 
 function InputFields({
-  placeholder,
+  placeholder = 'Type here...',
   value,
   onChange,
   name,
-  error,
+  error = false,
+  className = '',
 }: InputFieldsProps) {
   return (
     <input
       type="text"
+      placeholder={placeholder}
       value={value}
       name={name}
       onChange={onChange}
-      className={`${
-        error && 'ring-red-500 ring-2 '
-      } flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent`}
-      placeholder={placeholder}
+      className={
+        className +
+        ` input input-bordered w-full bg-white text-black ${
+          error ? 'input-error shake' : 'input-secondary'
+        }`
+      }
     />
   );
 }

@@ -37,7 +37,7 @@ function Text({
 }: TextProps) {
   return (
     <span
-      className={`text-${size} font-${fontWeight} ` + className}
+      className={`text-${size} font-${fontWeight} ${className}`}
       style={{
         ...style,
       }}

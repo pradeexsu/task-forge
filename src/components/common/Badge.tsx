@@ -1,24 +1,14 @@
-import { BadgeVariant } from '../../typeings';
-import Text from './Text';
+import { BadgeVariant, ClassNameType } from '../../typeings';
 
 interface BadgeProps {
-  lable: string;
+  label?: string;
   varient: BadgeVariant;
+  className?: ClassNameType;
 }
 
-function Badge({ lable, varient }: BadgeProps) {
-  const badgeClasses: Record<BadgeVariant, string> = {
-    ['info']: 'bg-blue-100 text-blue-600',
-    ['danger']: 'bg-red-100 text-red-600',
-    ['warning']: 'bg-yellow-100 text-yellow-600',
-    ['success']: 'bg-green-100 text-green-600',
-  };
-
-  return (
-    <Text className={'px-3 rounded-full ' + badgeClasses[varient]}>
-      {lable}
-    </Text>
-  );
+function Badge({ label, varient, className = '' }: BadgeProps) {
+  className += ` badge badge-lg badge-` + varient;
+  return <div className={className}>{label}</div>;
 }
 
 export default Badge;

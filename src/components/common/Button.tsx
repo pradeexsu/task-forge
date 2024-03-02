@@ -1,38 +1,54 @@
 import { ReactNode } from 'react';
-import { ClassNameType } from '../../typeings';
+import { ButtonVarient, ClassNameType } from '../../typeings';
+import FlexBox from './FlexBox';
 
 interface ButtonProps {
   label?: string;
   onClick?: () => void;
   children?: ReactNode;
   className?: ClassNameType;
-  varient?: 'primary' | 'secondary' | 'danger';
+  varient?: ButtonVarient;
+  size?: 'xs' | 'sm' | '' | 'lg';
+  glassy?: boolean;
+  outline?: boolean;
+  block?: boolean;
+  tabIndex?: number;
 }
+
 function Button({
   label,
   onClick,
   children,
   className,
-  varient = 'primary',
+  size = 'sm',
+  tabIndex,
+  outline = false,
+  varient = '',
+  glassy = false,
+  block = false,
 }: ButtonProps) {
-  if (varient === 'primary') {
-    className += ' bg-indigo-600 hover:bg-indigo-700 ';
-  } else if (varient === 'secondary') {
-    className += ' bg-gray-600 hover:bg-gray-700';
-  } else if (varient === 'danger') {
-    className += ' bg-red-600 hover:bg-red-700 ';
+  if ('' !== size) {
+    className = ` ${className} btn-${size}`;
+  }
+  if ('' !== varient) {
+    className = ` ${className} btn-${varient} `;
   }
   return (
-    <button
+    <div
+      role="button"
       onClick={onClick}
-      className={
-        className +
-        ' py-2 px-4  focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2'
-      }
+      className={`btn
+      ${glassy && ' glass '}
+      ${outline && ' btn-outline '} 
+      ${block && ' btn-block '} 
+      ${className} rounded-lg `}
+      tabIndex={tabIndex}
     >
-      {label}
-      {children}
-    </button>
+      <FlexBox>
+        {label}
+        {children}
+      </FlexBox>
+    </div>
   );
 }
 
