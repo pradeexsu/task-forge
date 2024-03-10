@@ -5,11 +5,15 @@ import {
   Visibility,
   VisibilityOff,
 } from '@mui/icons-material';
-import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import { useState } from 'react';
 
-export default function LoginSignup({ signup = false }: { signup?: boolean }) {
+type LoginSignupProps = {
+  signup?: boolean;
+};
+
+export default function LoginSignup({ signup = false }: LoginSignupProps) {
   const { loginUser, signupUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
@@ -17,8 +21,7 @@ export default function LoginSignup({ signup = false }: { signup?: boolean }) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (!email || !password) return;
     setLoading(true);
     if (signup) {
@@ -41,7 +44,7 @@ export default function LoginSignup({ signup = false }: { signup?: boolean }) {
         <h2 className=" text-center text-3xl font-extrabold text-gray-900 font-monts">
           {signup ? 'Sign up to create new account' : 'Sign in to your account'}
         </h2>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <div className="mt-8 space-y-6">
           <label className="input input-bordered flex items-center gap-2">
             <span className="hidden sm:inline">
               <AlternateEmail />
@@ -101,12 +104,12 @@ export default function LoginSignup({ signup = false }: { signup?: boolean }) {
           <div>
             <button
               className="btn btn-secondary w-full font-bold text-lg text-white"
-              type="submit"
+              onClick={handleSubmit}
             >
               {signup ? 'Sign up' : 'Sign in'}
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
