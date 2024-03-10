@@ -16,7 +16,7 @@ function Footer({ className }: FooterProps) {
       <aside>
         <p>
           Created by Pradeep Suthar
-          <div className="flex gap-4 justify-center select-none mt-4">
+          <span className="flex gap-4 justify-center select-none mt-4">
             <a href="https://github.com/pradeexsu" target="_blank">
               <img src={github} className="h-7" />
             </a>
@@ -29,7 +29,7 @@ function Footer({ className }: FooterProps) {
             >
               <img src={stackOverflow} className="h-8" />
             </a>
-          </div>
+          </span>
         </p>
       </aside>
     </footer>
