@@ -14,12 +14,12 @@ type LoginSignupProps = {
 };
 
 export default function LoginSignup({ signup = false }: LoginSignupProps) {
-  const { loginUser, signupUser } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
+  const { loginUser, signupUser } = useAuth();
 
   const handleSubmit = async () => {
     if (!email || !password) return;
@@ -31,10 +31,11 @@ export default function LoginSignup({ signup = false }: LoginSignupProps) {
     }
     setLoading(false);
   };
+
   if (loading)
     return (
       <div className="min-h-screen flex items-center justify-center text-2xl">
-        Please wait, You will be redirected shortly...
+        {'Please wait, You will be redirected shortly...'}
       </div>
     );
 
@@ -49,7 +50,6 @@ export default function LoginSignup({ signup = false }: LoginSignupProps) {
             <span className="hidden sm:inline">
               <AlternateEmail />
             </span>
-
             <input
               type="email"
               className="grow"
