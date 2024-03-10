@@ -4,7 +4,7 @@ import { RouteConfig, PAGES } from './typeings';
 import HomeRedirect from '../pages/HomeRedirect';
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
-import LoginRedirect from '../pages/loginRedirect';
+import LoginRedirect from '../pages/LoginRedirect';
 
 export const AUTHENTICATED_ROUTES: RouteConfig[] = [
   {
