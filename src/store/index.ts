@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { Store, TaskInfo } from '../typeings';
+import { AuthStore, Store, TaskInfo } from '../typeings';
 
-export const useStore = create<Store>()((set) => ({
+export const useTaskStore = create<Store>()((set) => ({
   tasks: [],
   addTask: (task) => set((state) => ({ tasks: [task, ...state.tasks] })),
   deleteTask: (id: string) =>
@@ -12,4 +12,17 @@ export const useStore = create<Store>()((set) => ({
         task?.id !== updatedTask?.id ? task : updatedTask
       ),
     })),
+}));
+
+export const useAuthStore = create<AuthStore>()((set) => ({
+  user: undefined,
+  token: undefined,
+  isAuthenticated: false,
+  userMetaData: undefined,
+  updateUserMetaData: () => {},
+  setToken: (token) => set({ token }),
+  logout: () => set({ isAuthenticated: false }),
+  authenticate: () => set({ isAuthenticated: true }),
+  unAuthenticate: () => set({ isAuthenticated: false }),
+  setUserMetaData: (userMetaData) => set({ userMetaData }),
 }));

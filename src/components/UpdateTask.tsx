@@ -29,11 +29,11 @@ function UpdateTask({ data, onUpdate, onCancelUpdate }: TaskItemProps) {
 
   return (
     <FlexBox
-      className="p-4 rounded-box w-full shadow-xl"
+      className="p-4 mb-4 rounded-box w-full shadow-xl"
       direction="column"
       gap={20}
     >
-      <FlexBox direction="column" gap={5} className="w-full">
+      <FlexBox direction="column" gap={10} className="w-full">
         <InputFields
           value={task?.task}
           onChange={onChangeHandler}

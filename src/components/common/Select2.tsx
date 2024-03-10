@@ -18,13 +18,13 @@ function Select2({ options, value, onChange, name }: SelectProps) {
     <div className="dropdown w-28">
       <Button
         tabIndex={0}
-        className="rounded-badge m-1"
+        className="rounded-full z-10"
         varient={TASK_BADGE_MAPPING[value as TaskStatus] as ButtonVarient}
       >
         {value}
       </Button>
 
-      <ul className="dropdown-content z-[1] menu p-2 shadow bg-white text-black  rounded-box w-52 ">
+      <ul className="dropdown-content z-50 menu p-2 shadow bg-white text-black  rounded-box w-52 ">
         {options?.map(({ value: val, label }) => (
           <li
             key={val}

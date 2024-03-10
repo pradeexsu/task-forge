@@ -42,3 +42,25 @@ export type Store = {
   deleteTask: (id: string) => void;
   updateTask: (task: TaskInfo) => void;
 };
+
+export type AuthCred = {
+  email?: string;
+  password?: string;
+  username?: string;
+};
+
+export type UserMetaData = Partial<{
+  username: string;
+  email: string;
+  id: string;
+}>;
+
+export type AuthStore = {
+  token?: string;
+  isAuthenticated?: boolean;
+  userMetaData?: UserMetaData;
+  authenticate: () => void;
+  unAuthenticate: () => void;
+  setToken: (token: string) => void;
+  setUserMetaData: (metaData?: UserMetaData) => void;
+};

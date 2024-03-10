@@ -6,7 +6,7 @@ import Tooltip from './common/Tooltip';
 import Button from './common/Button';
 import Select2 from './common/Select2';
 import { TODO_STATUS_OPTIONS } from '../const';
-import { useStore } from '../store';
+import { useTaskStore } from '../store';
 
 interface TaskItemProps {
   data: TaskInfo;
@@ -17,7 +17,7 @@ interface TaskItemProps {
 
 function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
   const { task, description, status, id } = data;
-  const { updateTask } = useStore();
+  const { updateTask } = useTaskStore();
   const [deleteState, setDeleteState] = useState('');
 
   const onClickDelete = () => {
@@ -63,7 +63,7 @@ function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
   return (
     <FlexBox
       direction="column"
-      className={className + ' p-4 rounded-box text-black shadow-xl w-full'}
+      className={className + ' p-4 mb-4  text-black shadow-lg bg-white w-full'}
       gap={5}
     >
       <Text size="3xl" fontWeight="semibold" className="font-semibold">
@@ -78,7 +78,6 @@ function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
         />
         <Button
           onClick={() => {
-            console.log('id', id);
             setUpdateId && setUpdateId(id);
           }}
           className="cursor-pointer"

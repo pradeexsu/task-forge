@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from 'react';
-import { useStore } from '../store';
 import Button from './common/Button';
 import FlexBox from './common/FlexBox';
 import InputArea from './common/InputArea';
@@ -9,11 +8,14 @@ import { TODO_INIT_VALUE, TODO_STATUS_OPTIONS } from '../const';
 
 import { v4 as uuidv4 } from 'uuid';
 import Select2 from './common/Select2';
+import { useTaskStore } from '../store';
+
 interface TaskInputProps {
   className?: ClassNameType;
 }
+
 function TaskInput({ className = '' }: TaskInputProps) {
-  const { addTask } = useStore();
+  const { addTask } = useTaskStore();
   const [error, setError] = useState(false);
   const [task, setTask] = useState<TaskInfo>(TODO_INIT_VALUE);
 
@@ -43,7 +45,7 @@ function TaskInput({ className = '' }: TaskInputProps) {
   };
 
   return (
-    <FlexBox direction="column" gap={20} className={'w-full px-4 ' + className}>
+    <FlexBox direction="column" gap={20} className={'w-full p-4 ' + className}>
       <FlexBox direction="column" gap={10} className="w-full">
         <InputFields
           placeholder="Task..."
