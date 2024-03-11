@@ -7,7 +7,7 @@ interface BadgeProps {
 }
 
 function Badge({ label, varient, className = '' }: BadgeProps) {
-  className += ` badge badge-lg badge-` + varient;
+  className += ` badge badge-sm ` + varient;
   return <div className={className}>{label}</div>;
 }
 

@@ -1,7 +1,10 @@
 import { ChangeEvent } from 'react';
+import { STATUS_BUTTUN_MAPPING } from '../../const';
+import { TaskStatus } from '../../typeings';
+import Button from './Button';
 
 interface SelectProps {
-  opstions?: {
+  options?: {
     label: string;
     value: string;
   }[];
@@ -10,20 +13,37 @@ interface SelectProps {
   onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-function Select({ opstions, value, onChange, name }: SelectProps) {
+function Select({ options, value, onChange, name }: SelectProps) {
   return (
-    <select
-      className="block px-3 py-2 text-gray-700 bg-white border border-gray-300 shadow-sm w-full focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-      onChange={onChange}
-      value={value}
-      name={name}
-    >
-      {opstions?.map(({ value, label }) => (
-        <option value={value} key={value}>
-          {label}
-        </option>
-      ))}
-    </select>
+    <div className="dropdown dropdown-top w-36">
+      <Button
+        tabIndex={0}
+        className="rounded-badge z-50"
+        varient={STATUS_BUTTUN_MAPPING[value as TaskStatus]}
+      >
+        {value}
+      </Button>
+
+      <ul className="dropdown-content z-50 menu p-2 shadow bg-white text-black  rounded-box w-52">
+        {options?.map(({ value: val, label }) => (
+          <li
+            key={val}
+            tabIndex={0}
+            onClick={() =>
+              onChange &&
+              onChange({
+                target: {
+                  value: val,
+                  name: name || '',
+                },
+              } as ChangeEvent<HTMLSelectElement>)
+            }
+          >
+            <a className="hover:bg-gray-300">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

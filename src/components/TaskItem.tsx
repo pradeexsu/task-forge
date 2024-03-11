@@ -4,7 +4,7 @@ import Text from './common/Text';
 import { ChangeEvent, ReactNode, useState } from 'react';
 import Tooltip from './common/Tooltip';
 import Button from './common/Button';
-import Select2 from './common/Select2';
+import Select2 from './common/Select';
 import { TODO_STATUS_OPTIONS } from '../const';
 import { useTaskStore } from '../store';
 
@@ -16,7 +16,7 @@ interface TaskItemProps {
 }
 
 function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
-  const { task, description, status, id } = data;
+  const { title, description, status, id } = data;
   const { updateTask } = useTaskStore();
   const [deleteState, setDeleteState] = useState('');
 
@@ -39,21 +39,21 @@ function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
 
   const deleteIcon: Record<string, ReactNode> = {
     ['']: (
-      <Tooltip text="Want to Delete Task?" varient="error">
+      <Tooltip text="Want to Delete Task?">
         <Button
           onClick={onClickDelete}
           className="cursor-pointer"
-          varient="error"
+          varient="btn-error"
           label="Delete"
         />
       </Tooltip>
     ),
     ['confirm']: (
-      <Tooltip text="Confirm?" varient="accent">
+      <Tooltip text="Confirm?">
         <Button
           onClick={onClickDelete}
           className="cursor-pointer btn-accent "
-          varient="accent"
+          varient="btn-accent"
           label="Delete"
         />
       </Tooltip>
@@ -63,14 +63,20 @@ function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
   return (
     <FlexBox
       direction="column"
-      className={className + ' p-4 mb-4  text-black shadow-lg bg-white w-full'}
+      className={`${className} p-4 mb-4  text-black shadow-lg bg-white w-full`}
       gap={5}
     >
-      <Text size="3xl" fontWeight="semibold" className="font-semibold">
-        {task}
+      <Text size="text-xl" fontWeight="text-semibold">
+        {title}
       </Text>
       <Text>{description}</Text>
-      <FlexBox justify="flex-start" gap={10}>
+      <FlexBox
+        justify="space-between"
+        grow={1}
+        wrap="wrap"
+        className="w-full"
+        gap={20}
+      >
         <Select2
           options={TODO_STATUS_OPTIONS}
           value={status}
@@ -80,8 +86,8 @@ function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
           onClick={() => {
             setUpdateId && setUpdateId(id);
           }}
-          className="cursor-pointer"
-          varient="secondary"
+          className="cursor-pointer ml-auto"
+          varient="btn-primary"
           label="Edit"
         />
         {deleteIcon[deleteState]}

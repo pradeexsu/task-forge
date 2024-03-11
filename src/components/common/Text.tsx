@@ -1,7 +1,7 @@
-import { CSSProperties, HTMLProps, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
+import { ClassNameType } from '../../typeings';
 
-// type Varient = 'heading' | 'body' | 'heading2' | 'heading3' | 'bold';
-type FontWeight =
+type FontWeight = `text-${
   | 'thin'
   | 'extralight'
   | 'light'
@@ -10,34 +10,29 @@ type FontWeight =
   | 'semibold'
   | 'bold'
   | 'extrabold'
-  | 'black';
+  | 'black'}`;
 
-type TextSize =
-  | 'sm'
-  | 'md'
-  | 'base'
-  | 'lg'
-  | `${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | ''}xl`;
+type TextSize = `text-${'sm' | 'md' | 'base' | 'lg' | `${'' | 2 | 3 | 4}xl`}`;
 
 interface TextProps {
+  color?: string;
+  size?: TextSize;
   children: ReactNode;
   style?: CSSProperties;
   fontWeight?: FontWeight;
-  className?: HTMLProps<HTMLElement>['className'];
-  color?: string;
-  size?: TextSize;
+  className?: ClassNameType;
 }
 
 function Text({
-  children,
-  size = 'base',
   style,
-  fontWeight = 'normal',
+  children,
   className,
+  size = 'text-base',
+  fontWeight = 'text-normal',
 }: TextProps) {
   return (
     <span
-      className={`text-${size} font-${fontWeight} ${className}`}
+      className={`${size} ${fontWeight} ${className}`}
       style={{
         ...style,
       }}

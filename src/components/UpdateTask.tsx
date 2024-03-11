@@ -5,7 +5,7 @@ import { TODO_STATUS_OPTIONS } from '../const';
 import InputFields from './common/InputFields';
 import InputArea from './common/InputArea';
 import Button from './common/Button';
-import Select2 from './common/Select2';
+import Select2 from './common/Select';
 
 interface TaskItemProps {
   data: TaskInfo;

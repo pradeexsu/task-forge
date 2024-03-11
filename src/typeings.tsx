@@ -1,38 +1,22 @@
 import { HTMLProps } from 'react';
 
 export type ClassNameType = HTMLProps<HTMLElement>['className'];
-export type BadgeVariant =
-  | 'default'
-  | 'neutral'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'ghost'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error';
 
-export type TaskStatus = 'done' | 'inprogress' | 'todo' | 'deffered';
+export type BadgeVariant = 'badge-accent' | 'badge-info' | 'badge-success';
+
+export type TaskStatus = 'DONE' | 'IN_PROGRESS' | 'TODO';
 
 export type ButtonVarient =
-  | ''
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'none'
-  | 'neutral'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'ghost'
-  | 'link';
+  | 'btn-accent'
+  | 'btn-info'
+  | 'btn-success'
+  | 'btn-primary'
+  | 'btn-error';
 
 export type TaskInfo = {
-  task?: string;
+  title: string;
   description?: string;
-  status?: TaskStatus;
+  status: TaskStatus;
   id: string;
 };
 

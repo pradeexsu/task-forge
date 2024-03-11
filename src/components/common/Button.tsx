@@ -8,7 +8,7 @@ interface ButtonProps {
   children?: ReactNode;
   className?: ClassNameType;
   varient?: ButtonVarient;
-  size?: 'xs' | 'sm' | '' | 'lg';
+  size?: 'bt-xs' | 'btn-sm' | '' | 'btn-lg';
   glassy?: boolean;
   outline?: boolean;
   block?: boolean;
@@ -20,25 +20,18 @@ function Button({
   onClick,
   children,
   className,
-  size = 'sm',
+  size = 'btn-sm',
   tabIndex,
   outline = false,
-  varient = '',
-  glassy = false,
+  varient = 'btn-info',
   block = false,
 }: ButtonProps) {
-  if ('' !== size) {
-    className = ` ${className} btn-${size}`;
-  }
-  if ('' !== varient) {
-    className = ` ${className} btn-${varient} `;
-  }
   return (
     <div
       role="button"
       onClick={onClick}
-      className={`btn
-      ${glassy && ' glass '}
+      className={`btn ${varient} 
+      ${size} 
       ${outline && ' btn-outline '} 
       ${block && ' btn-block '} 
       ${className} rounded-lg `}

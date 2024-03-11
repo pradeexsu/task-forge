@@ -5,7 +5,7 @@ import { useAuthStore } from './store';
 function App() {
   const { isAuthenticated } = useAuthStore();
 
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     return (
       <Routes>
         {AUTHENTICATED_ROUTES.map(({ href, Element }) => (
