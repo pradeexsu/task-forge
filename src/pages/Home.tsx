@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import FlexBox from '../components/common/FlexBox';
 import Footer from '../components/common/Footer';
@@ -17,8 +17,8 @@ function Home() {
   //   id: i.toString(),
   // }));
 
-  const [updateId, setUpdateId] = useState('');
-  const { deleteTask, updateTask } = useTaskStore();
+  // const [updateId, setUpdateId] = useState('');
+  const { deleteTask } = useTaskStore();
 
   return (
     <FlexBox
@@ -37,7 +37,7 @@ function Home() {
             data={task}
             key={task?.id}
             onDelete={deleteTask}
-            setUpdateId={setUpdateId}
+            // setUpdateId={setUpdateId}
           />
         ))}
       </FlexBox>
