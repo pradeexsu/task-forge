@@ -7,8 +7,9 @@ interface BadgeProps {
 }
 
 function Badge({ label, varient, className = '' }: BadgeProps) {
-  className += ` badge badge-sm ` + varient;
-  return <div className={className}>{label}</div>;
+  return (
+    <div className={`badge badge-sm ${className} ${varient}`}>{label}</div>
+  );
 }
 
 export default Badge;

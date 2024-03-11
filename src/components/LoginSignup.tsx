@@ -13,7 +13,7 @@ type LoginSignupProps = {
   signup?: boolean;
 };
 
-export default function LoginSignup({ signup = false }: LoginSignupProps) {
+function LoginSignup({ signup = false }: LoginSignupProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
@@ -114,3 +114,5 @@ export default function LoginSignup({ signup = false }: LoginSignupProps) {
     </div>
   );
 }
+
+export default LoginSignup;

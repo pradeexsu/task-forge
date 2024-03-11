@@ -20,10 +20,11 @@ function UpdateTask({ data, onUpdate, onCancelUpdate }: TaskItemProps) {
   const onChangeHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    if (e.target.name == 'task') setError(false);
+    const { name } = e.target;
+    if (name === 'title') setError(false);
     setTask((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: e.target.value,
     }));
   };
 
@@ -35,7 +36,7 @@ function UpdateTask({ data, onUpdate, onCancelUpdate }: TaskItemProps) {
     >
       <FlexBox direction="column" gap={10} className="w-full">
         <InputFields
-          value={task?.task}
+          value={task?.title}
           onChange={onChangeHandler}
           error={error}
           name="task"
@@ -55,12 +56,12 @@ function UpdateTask({ data, onUpdate, onCancelUpdate }: TaskItemProps) {
         />
         <Button
           label="Update"
-          varient="primary"
+          varient="btn-primary"
           onClick={() => onUpdate && onUpdate(task)}
         />
         <Button
           label="Cancel"
-          varient="secondary"
+          varient="btn-info"
           outline
           onClick={() => onCancelUpdate && onCancelUpdate()}
         />
