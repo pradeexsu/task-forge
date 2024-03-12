@@ -5,7 +5,6 @@ import { AxiosResponse } from 'axios';
 
 export async function login(cred: AuthCred) {
   try {
-    console.log('cred:', cred);
     const { data } = (await axiosAuthInstance.post(
       'login',
       cred
