@@ -16,10 +16,8 @@ function useModal() {
     openModal();
   }
 
-  async function openDeleteTaskModal(task: Task) {
-    setModalContent(
-      <DeleteTaskConfirmModal title={task?.title} id={task?.id} />
-    );
+  async function openDeleteTaskModal({ title, id }: Task) {
+    setModalContent(<DeleteTaskConfirmModal title={title} id={id} />);
     openModal();
   }
 

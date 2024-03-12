@@ -22,7 +22,7 @@ function TaskInputModal({
   initTask = TASK_INIT_VALUE,
   actionType = 'Create',
 }: TaskInputProps) {
-  const { createTask } = useTaskManager();
+  const { createTask, updateTask } = useTaskManager();
   const { setModalContent } = useTaskStore();
 
   const [error, setError] = useState(false);
@@ -33,11 +33,25 @@ function TaskInputModal({
       setError(true);
       return;
     }
+    if (
+      initTask?.title === task.title &&
+      initTask?.description === task.description &&
+      initTask?.status === task.status
+    ) {
+      setModalContent(
+        <h3 className="font-bold text-lg">
+          No changes to {actionType} your task!
+        </h3>
+      );
+      return;
+    }
     setLoading(true);
-    const success = await createTask({
-      ...task,
-      id: task.id,
-    });
+    let success;
+    if (actionType === 'Create') {
+      success = await createTask(task);
+    } else {
+      success = await updateTask(task);
+    }
 
     if (success) {
       setModalContent(

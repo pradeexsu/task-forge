@@ -93,7 +93,7 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
               )}
             </button>
           </label>
-          <h2 className="hover:underline text-secondary-content font-medium font-monts">
+          <h2 className="hover:underline no-underline font-medium font-monts link link-primary">
             {signup ? (
               <Link to="/login">Already have an account?</Link>
             ) : (

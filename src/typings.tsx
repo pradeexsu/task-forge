@@ -3,7 +3,11 @@ import { Task } from './service/typings';
 
 export type ClassNameType = HTMLProps<HTMLElement>['className'];
 
-export type BadgeVariant = 'badge-accent' | 'badge-info' | 'badge-success';
+export type BadgeVariant =
+  | 'badge-accent'
+  | 'badge-info'
+  | 'badge-success'
+  | 'badge-warning';
 
 export type TaskStatus = 'DONE' | 'IN_PROGRESS' | 'OPEN';
 
@@ -13,6 +17,7 @@ export type ButtonVarient =
   | 'btn-success'
   | 'btn-primary'
   | 'btn-secondary'
+  | 'btn-warning'
   | 'btn-default'
   | 'btn-error';
 

@@ -23,7 +23,7 @@ function Home() {
       <NavBar />
       <FlexBox
         direction="column"
-        className=" justify-center w-full overflow-y-auto gap-2 min-h-[100vh-112px-266px]"
+        className=" justify-center w-full overflow-y-auto gap-2 min-h-[100vh-112px-266px] pt-14"
       >
         {tasks?.map((task) => (
           <TaskItem data={task} key={task?.id} />

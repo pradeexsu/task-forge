@@ -1,7 +1,7 @@
 import { ClassNameType, TaskStatus } from '../typings';
 import FlexBox from './common/FlexBox';
 import Text from './common/Text';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import Button from './common/Button';
 import Select2 from './common/Select';
 import { Task } from '../service/typings';
@@ -19,15 +19,19 @@ function TaskItem({ data, className }: TaskItemProps) {
   const { updateTask } = useTaskManager();
   const { openUpdateTaskModal, openDeleteTaskModal } = useModal();
 
-  const onUpdateState = (e: ChangeEvent<HTMLSelectElement>) => {
-    data['status'] = e.target.value as TaskStatus;
-    updateTask({ ...data, status: e.target.value as TaskStatus });
-  };
+  const onUpdateState = useCallback(
+    async (e: ChangeEvent<HTMLSelectElement>) => {
+      const status = e.target.value as TaskStatus;
+      if (status === data?.status) return;
+      await updateTask({ ...data, status: status });
+    },
+    [data, updateTask]
+  );
 
   return (
     <FlexBox
       direction="column"
-      className={`${className} p-4 mb-4  text-black shadow-lg bg-white w-full`}
+      className={`${className} p-4 mb-4  text-black shadow-lg border-2 rounded-lg bg-white w-full`}
       gap={5}
     >
       <Text size="text-xl" fontWeight="text-semibold">
@@ -50,13 +54,13 @@ function TaskItem({ data, className }: TaskItemProps) {
           onClick={() => {
             openUpdateTaskModal(data);
           }}
-          className="cursor-pointer ml-auto"
+          className="cursor-pointer ml-auto btn-outline"
           varient="btn-primary"
           label="Edit"
         />
         <Button
           onClick={() => openDeleteTaskModal(data)}
-          className="cursor-pointer"
+          className="cursor-pointer btn-outline"
           varient="btn-error"
           label="Delete"
         />

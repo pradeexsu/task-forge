@@ -24,7 +24,7 @@ function Select({ options, value, onChange, name }: SelectProps) {
         {value}
       </Button>
 
-      <ul className="dropdown-content z-50 menu p-2 shadow bg-white text-black rounded-box w-52">
+      <ul className="dropdown-content z-50 menu p-2 shadow bg-white text-black rounded-box w-52 border-2">
         {options?.map(({ value, label }) => (
           <li
             key={value}

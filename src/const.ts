@@ -17,11 +17,11 @@ export const TASK_INIT_VALUE: Task = {
 export const STATUS_BADGE_MAPPING: Record<TaskStatus, BadgeVariant> = {
   ['OPEN']: 'badge-info',
   ['DONE']: 'badge-success',
-  ['IN_PROGRESS']: 'badge-accent',
+  ['IN_PROGRESS']: 'badge-warning',
 };
 
 export const STATUS_BUTTUN_MAPPING: Record<TaskStatus, ButtonVarient> = {
   ['OPEN']: 'btn-info',
-  ['DONE']: 'btn-success',
-  ['IN_PROGRESS']: 'btn-accent',
+  ['DONE']: 'btn-primary',
+  ['IN_PROGRESS']: 'btn-warning',
 };

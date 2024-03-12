@@ -5,10 +5,10 @@ import { useAuthStore } from './store';
 function App() {
   const { isAuthenticated } = useAuthStore();
 
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     return (
       <Routes>
-        {AUTHENTICATED_ROUTES.map(({ href, Element }) => (
+        {UNAUTHENTICATED_ROUTES.map(({ href, Element }) => (
           <Route key={href} path={href} element={<Element />} />
         ))}
       </Routes>
@@ -16,7 +16,7 @@ function App() {
   }
   return (
     <Routes>
-      {UNAUTHENTICATED_ROUTES.map(({ href, Element }) => (
+      {AUTHENTICATED_ROUTES.map(({ href, Element }) => (
         <Route key={href} path={href} element={<Element />} />
       ))}
     </Routes>
