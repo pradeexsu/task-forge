@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode } from 'react';
-import { ClassNameType } from '../../typeings';
+import { ClassNameType } from '../../typings';
 
 interface FlexBoxProps {
   direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';

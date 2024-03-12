@@ -21,7 +21,7 @@ function InputArea({
       name={name}
       onChange={onChange}
       placeholder={placeholder}
-      className="textarea textarea-secondary w-full bg-white text-black h-10 max-h-32"
+      className="textarea  textarea-secondary w-full bg-white text-black h-10 max-h-32"
     />
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { UserMetaData } from '../typeings';
+import { UserMetaData } from '../typings';
 import { useJwt } from 'react-jwt';
 import { useAuthStore } from '../store';
 

@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { ClassNameType } from '../../typeings';
+import { ClassNameType } from '../../typings';
 
 interface InputFieldsProps {
   placeholder?: string;
@@ -27,7 +27,7 @@ function InputFields({
       onChange={onChange}
       className={
         className +
-        ` input input-bordered w-full bg-white text-black ${
+        ` input  w-full bg-white text-black ${
           error ? 'input-error shake' : 'input-secondary'
         }`
       }

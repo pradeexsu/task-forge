@@ -1,63 +1,27 @@
-import { ClassNameType, TaskInfo, TaskStatus } from '../typeings';
+import { ClassNameType, TaskStatus } from '../typings';
 import FlexBox from './common/FlexBox';
 import Text from './common/Text';
-import { ChangeEvent, ReactNode, useState } from 'react';
-import Tooltip from './common/Tooltip';
+import { ChangeEvent } from 'react';
 import Button from './common/Button';
 import Select2 from './common/Select';
-import { TODO_STATUS_OPTIONS } from '../const';
-import { useTaskStore } from '../store';
+import { Task } from '../service/typings';
+import { STATUS_OPTIONS } from '../const';
+import useTaskManager from '../hooks/useTaskManager';
+import useModal from '../hooks/useModal';
 
 interface TaskItemProps {
-  data: TaskInfo;
-  onDelete?: (taskId: string) => void;
-  setUpdateId?: (taskId: string) => void;
+  data: Task;
   className?: ClassNameType;
 }
 
-function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
-  const { title, description, status, id } = data;
-  const { updateTask } = useTaskStore();
-  const [deleteState, setDeleteState] = useState('');
-
-  const onClickDelete = () => {
-    if (deleteState === '') {
-      setDeleteState('confirm');
-      setTimeout(() => {
-        setDeleteState('');
-      }, 2000);
-    } else if (deleteState === 'confirm') {
-      onDelete && onDelete(id);
-      return;
-    }
-  };
+function TaskItem({ data, className }: TaskItemProps) {
+  const { title, description, status } = data;
+  const { updateTask } = useTaskManager();
+  const { openUpdateTaskModal, openDeleteTaskModal } = useModal();
 
   const onUpdateState = (e: ChangeEvent<HTMLSelectElement>) => {
     data['status'] = e.target.value as TaskStatus;
-    updateTask(data);
-  };
-
-  const deleteIcon: Record<string, ReactNode> = {
-    ['']: (
-      <Tooltip text="Want to Delete Task?">
-        <Button
-          onClick={onClickDelete}
-          className="cursor-pointer"
-          varient="btn-error"
-          label="Delete"
-        />
-      </Tooltip>
-    ),
-    ['confirm']: (
-      <Tooltip text="Confirm?">
-        <Button
-          onClick={onClickDelete}
-          className="cursor-pointer btn-accent "
-          varient="btn-accent"
-          label="Delete"
-        />
-      </Tooltip>
-    ),
+    updateTask({ ...data, status: e.target.value as TaskStatus });
   };
 
   return (
@@ -78,19 +42,24 @@ function TaskItem({ data, onDelete, setUpdateId, className }: TaskItemProps) {
         gap={20}
       >
         <Select2
-          options={TODO_STATUS_OPTIONS}
+          options={STATUS_OPTIONS}
           value={status}
           onChange={onUpdateState}
         />
         <Button
           onClick={() => {
-            setUpdateId && setUpdateId(id);
+            openUpdateTaskModal(data);
           }}
           className="cursor-pointer ml-auto"
           varient="btn-primary"
           label="Edit"
         />
-        {deleteIcon[deleteState]}
+        <Button
+          onClick={() => openDeleteTaskModal(data)}
+          className="cursor-pointer"
+          varient="btn-error"
+          label="Delete"
+        />
       </FlexBox>
     </FlexBox>
   );

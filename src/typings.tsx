@@ -1,30 +1,29 @@
-import { HTMLProps } from 'react';
+import { HTMLProps, ReactNode } from 'react';
+import { Task } from './service/typings';
 
 export type ClassNameType = HTMLProps<HTMLElement>['className'];
 
 export type BadgeVariant = 'badge-accent' | 'badge-info' | 'badge-success';
 
-export type TaskStatus = 'DONE' | 'IN_PROGRESS' | 'TODO';
+export type TaskStatus = 'DONE' | 'IN_PROGRESS' | 'OPEN';
 
 export type ButtonVarient =
   | 'btn-accent'
   | 'btn-info'
   | 'btn-success'
   | 'btn-primary'
+  | 'btn-secondary'
+  | 'btn-default'
   | 'btn-error';
 
-export type TaskInfo = {
-  title: string;
-  description?: string;
-  status: TaskStatus;
-  id: string;
-};
-
-export type Store = {
-  tasks: TaskInfo[];
-  addTask: (task: TaskInfo) => void;
+export type TaskStore = {
+  tasks: Task[];
+  modalContent: ReactNode;
+  addTask: (task: Task) => void;
   deleteTask: (id: string) => void;
-  updateTask: (task: TaskInfo) => void;
+  updateTask: (task: Task) => void;
+  setTasks: (tasks: Task[]) => void;
+  setModalContent: (jsx: ReactNode) => void;
 };
 
 export type AuthCred = {

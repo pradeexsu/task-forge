@@ -1,6 +1,6 @@
 import useEncrypt from './useEncrypt';
 import { login, signup } from '../service/auth';
-import { AuthCred } from '../typeings';
+import { AuthCred } from '../typings';
 import useToken from './useToken';
 
 export default function useAuth() {

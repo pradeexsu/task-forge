@@ -1,26 +1,27 @@
-import { BadgeVariant, ButtonVarient, TaskInfo, TaskStatus } from './typeings';
+import { Task } from './service/typings';
+import { BadgeVariant, ButtonVarient, TaskStatus } from './typings';
 
-export const TODO_STATUS_OPTIONS = [
-  { label: 'Todo', value: 'TODO' },
+export const STATUS_OPTIONS = [
+  { label: 'Open', value: 'OPEN' },
   { label: 'Done', value: 'DONE' },
   { label: 'Inprogress', value: 'IN_PROGRESS' },
 ];
 
-export const TODO_INIT_VALUE: TaskInfo = {
+export const TASK_INIT_VALUE: Task = {
   title: '',
-  status: 'TODO',
+  status: 'OPEN',
   description: '',
   id: '',
 };
 
 export const STATUS_BADGE_MAPPING: Record<TaskStatus, BadgeVariant> = {
-  ['TODO']: 'badge-info',
+  ['OPEN']: 'badge-info',
   ['DONE']: 'badge-success',
   ['IN_PROGRESS']: 'badge-accent',
 };
 
 export const STATUS_BUTTUN_MAPPING: Record<TaskStatus, ButtonVarient> = {
-  ['TODO']: 'btn-info',
+  ['OPEN']: 'btn-info',
   ['DONE']: 'btn-success',
   ['IN_PROGRESS']: 'btn-accent',
 };

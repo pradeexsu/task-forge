@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ButtonVarient, ClassNameType } from '../../typeings';
+import { ButtonVarient, ClassNameType } from '../../typings';
 import FlexBox from './FlexBox';
 
 interface ButtonProps {
@@ -8,11 +8,9 @@ interface ButtonProps {
   children?: ReactNode;
   className?: ClassNameType;
   varient?: ButtonVarient;
-  size?: 'bt-xs' | 'btn-sm' | '' | 'btn-lg';
-  glassy?: boolean;
-  outline?: boolean;
-  block?: boolean;
+  size?: 'btn-xs' | 'btn-sm' | 'btn-lg';
   tabIndex?: number;
+  rounded?: boolean;
 }
 
 function Button({
@@ -22,9 +20,8 @@ function Button({
   className,
   size = 'btn-sm',
   tabIndex,
-  outline = false,
   varient = 'btn-info',
-  block = false,
+  rounded = false,
 }: ButtonProps) {
   return (
     <div
@@ -32,8 +29,7 @@ function Button({
       onClick={onClick}
       className={`btn ${varient} 
       ${size} 
-      ${outline && ' btn-outline '} 
-      ${block && ' btn-block '} 
+      ${rounded && ' rounded-s-badge rounded-e-badge '}
       ${className} rounded-lg `}
       tabIndex={tabIndex}
     >

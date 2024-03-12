@@ -1,16 +1,23 @@
 import { create } from 'zustand';
-import { AuthStore, Store, TaskInfo } from '../typeings';
+import { AuthStore, TaskStore } from '../typings';
+import { Task } from '../service/typings';
 
-export const useTaskStore = create<Store>()((set) => ({
+export const useTaskStore = create<TaskStore>()((set) => ({
   tasks: [],
+  modalContent: undefined,
+  setModalContent: (modalContent) => set({ modalContent }),
   addTask: (task) => set((state) => ({ tasks: [task, ...state.tasks] })),
   deleteTask: (id: string) =>
     set((state) => ({ tasks: state.tasks.filter((task) => task?.id !== id) })),
-  updateTask: (updatedTask: TaskInfo) =>
+  updateTask: (updatedTask: Task) =>
     set((state) => ({
       tasks: state.tasks.map((task) =>
         task?.id !== updatedTask?.id ? task : updatedTask
       ),
+    })),
+  setTasks: (tasks: Task[]) =>
+    set(() => ({
+      tasks,
     })),
 }));
 

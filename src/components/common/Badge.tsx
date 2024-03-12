@@ -1,4 +1,4 @@
-import { BadgeVariant, ClassNameType } from '../../typeings';
+import { BadgeVariant, ClassNameType } from '../../typings';
 
 interface BadgeProps {
   label?: string;

@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from 'react';
-import { ClassNameType } from '../../typeings';
+import { ClassNameType } from '../../typings';
 
 type FontWeight = `text-${
   | 'thin'

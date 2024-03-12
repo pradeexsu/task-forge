@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TOKEN } from './const';
+import { v4 as uuidv4 } from 'uuid';
 
 export const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_API_URI}/api/`,
@@ -15,12 +15,23 @@ export const axiosAuthInstance = axios.create({
   },
 });
 
+axiosAuthInstance.interceptors.request.use(
+  (config) => {
+    config.headers['x-request-id'] = uuidv4();
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 axiosInstance.interceptors.request.use(
   (config) => {
-    console.log(sessionStorage.getItem(TOKEN));
-    const { token } = sessionStorage;
-    if (token) {
-      config.headers.token = token;
+    const { userToken } = sessionStorage;
+
+    config.headers['x-request-id'] = uuidv4();
+    if (userToken) {
+      config.headers['x-auth-token'] = userToken;
     }
     return config;
   },
@@ -31,9 +42,9 @@ axiosInstance.interceptors.request.use(
 
 axiosAuthInstance.interceptors.response.use(
   (config) => {
-    const { token } = config.headers;
-    if (token) {
-      sessionStorage.setItem(TOKEN, token);
+    const userToken = config.headers['x-auth-token'];
+    if (userToken) {
+      sessionStorage.setItem('userToken', userToken);
     }
     return config;
   },

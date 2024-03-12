@@ -1,7 +1,7 @@
 import stackOverflow from '/stack-overflow.svg';
 import github from '/github.svg';
 import linkedin from '/linkedin.svg';
-import { ClassNameType } from '../../typeings';
+import { ClassNameType } from '../../typings';
 interface FooterProps {
   className?: ClassNameType;
 }

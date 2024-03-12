@@ -1,7 +1,8 @@
 import { Add } from '@mui/icons-material';
-import { ClassNameType } from '../../typeings';
+import { ClassNameType } from '../../typings';
 import { useAuthStore } from '../../store';
 import { useNavigate } from 'react-router-dom';
+import useModal from '../../hooks/useModal';
 
 interface NavBarProps {
   className?: ClassNameType;
@@ -10,13 +11,8 @@ interface NavBarProps {
 function NavBar({ className = '' }: NavBarProps) {
   const navigate = useNavigate();
   const { userMetaData, unAuthenticate } = useAuthStore();
+  const { openCreateTaskModal } = useModal();
 
-  function openModal() {
-    const modal = document?.getElementById('my_modal_2') as HTMLDialogElement;
-    if (modal) {
-      modal?.showModal();
-    }
-  }
   const handleLogout = () => {
     sessionStorage.removeItem('userToken');
     sessionStorage.removeItem('userMetaData');
@@ -27,7 +23,7 @@ function NavBar({ className = '' }: NavBarProps) {
   return (
     <div className={'navbar bg-base-100' + className}>
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl" onClick={openModal}>
+        <a className="btn btn-ghost text-xl" onClick={openCreateTaskModal}>
           <Add />
           Add Task
         </a>
@@ -46,17 +42,19 @@ function NavBar({ className = '' }: NavBarProps) {
               />
             </div>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
+          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <li>
               <a href="#" className="justify-between">
-                {userMetaData?.username} Pradeep Suthar
+                {userMetaData?.username}
               </a>
             </li>
             <li>
-              <a href="#" className="justify-between" onClick={handleLogout}>
+              <a
+                tabIndex={0}
+                href="#"
+                className="justify-between"
+                onClick={handleLogout}
+              >
                 Logout
               </a>
             </li>
