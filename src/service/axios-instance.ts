@@ -32,6 +32,7 @@ axiosInstance.interceptors.request.use(
     config.headers['x-request-id'] = uuidv4();
     if (userToken) {
       config.headers['x-auth-token'] = userToken;
+      config.headers['X-Auth-Token'] = userToken;
     }
     return config;
   },
@@ -42,7 +43,8 @@ axiosInstance.interceptors.request.use(
 
 axiosAuthInstance.interceptors.response.use(
   (config) => {
-    const userToken = config.headers['x-auth-token'];
+    const userToken =
+      config.headers['x-auth-token'] || config.headers['X-Auth-Token'];
     if (userToken) {
       sessionStorage.setItem('userToken', userToken);
     }
