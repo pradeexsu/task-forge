@@ -55,7 +55,7 @@ function TaskItem({ data, className }: TaskItemProps) {
             openUpdateTaskModal(data);
           }}
           className="cursor-pointer ml-auto btn-outline"
-          varient="btn-primary"
+          varient="btn-success"
           label="Edit"
         />
         <Button

@@ -36,11 +36,7 @@ function DeleteTaskConfirmModal({ id, title }: DeleteTaskConfirmModalProps) {
         <h3 className="font-bold text-lg">Are you sure about Deleting Task?</h3>
         <div>{title}</div>
         <FlexBox gap={10} className="w-full justify-end">
-          <Button
-            onClick={onDelete}
-            varient="btn-secondary"
-            className="ml-auto"
-          >
+          <Button onClick={onDelete} varient="btn-error" className="ml-auto">
             Delete
           </Button>
           <form method="dialog">

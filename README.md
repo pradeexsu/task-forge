@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+# Task Manager Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a frontend application for managing tasks, built with Vite, DaisyUI, React, Tailwind CSS, TypeScript, and Zustand.
 
-Currently, two official plugins are available:
+[![UI Application CI](https://github.com/pradeexsu/task-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/pradeexsu/task-forge/actions/workflows/ci.yml) &nbsp; [![Backend Service CI](https://github.com/pradeexsu/task-forge-service/actions/workflows/docker-image.yml/badge.svg)](https://github.com/pradeexsu/task-forge-service/actions/workflows/docker-image.yml)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Features
 
-## Expanding the ESLint configuration
+- **Task Management**: Easily create, update, delete, and mark tasks as completed.
+- **Responsive Design**: The application is responsive and works well on various screen sizes.
+- **State Management**: Uses Zustand for state management, providing a predictable and efficient way to manage application state.
+- **Modern Stack**: Built with modern frontend technologies including React, TypeScript, and Tailwind CSS for a fast and enjoyable development experience.
+- **Backend Service**: The application relies on an Express.js [Task Manager Service](https://github.com/pradeexsu/task-forge-service?tab=readme-ov-file#task-manager-service) written in TypeScript, utilizing Prisma for database management with PostgreSQL, and containerized using Docker for seamless deployment.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+Before running the application, ensure you have the following installed on your machine:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Node.js and npm
+- Git
+
+### Getting Started
+
+To get started with the Task Manager frontend application, follow these steps:
+
+1. Install dependencies using npm or yarn:
+
+```
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Start the development server:
+
+```
+npm run dev
+```
+
+3. Open your browser and visit http://localhost:5173/ to view the application.
+
+### Project Structure
+
+- **src/components**: Contains React components used to build the UI.
+- **src/hooks**: Custom hooks used for various functionalities.
+- **src/store**: Zustand store setup and state management logic.
+- **src/styles**: Global styles and Tailwind CSS configurations.
+- **src/utils**: Utility functions and helper methods.
+
+---
+
+### Contributing
+
+Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests to help improve this project.
+
+### License
+
+This project is licensed under the MIT License.
+
+Feel free to customize this README to fit your project's specific details and requirements. Good luck with your Task Manager frontend application!

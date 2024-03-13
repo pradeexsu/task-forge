@@ -15,25 +15,27 @@ function NavBar({ className = '' }: NavBarProps) {
 
   const handleLogout = () => {
     sessionStorage.removeItem('userToken');
-    sessionStorage.removeItem('userMetaData');
     unAuthenticate();
     navigate(0);
   };
 
   return (
-    <div className={'navbar bg-base-100' + className}>
+    <div className={'navbar bg-success ' + className}>
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl" onClick={openCreateTaskModal}>
-          <Add />
+        <a
+          className="btn btn-ghost text-xl text-white"
+          onClick={openCreateTaskModal}
+        >
+          <Add fontSize="large" />
           Add Task
         </a>
       </div>
       <div className="flex-none">
-        <div className="dropdown dropdown-end">
+        <div className="dropdown dropdown-end ">
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost btn-circle avatar"
+            className="btn btn-ghost btn-circle avatar "
           >
             <div className="w-10 rounded-full">
               <img
@@ -42,7 +44,7 @@ function NavBar({ className = '' }: NavBarProps) {
               />
             </div>
           </div>
-          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-lg w-52">
             <li>
               <a href="#" className="justify-between">
                 {userMetaData?.username}

@@ -27,7 +27,7 @@ function InputFields({
       onChange={onChange}
       className={
         className +
-        ` input  w-full bg-white text-black ${
+        ` input  w-full bg-white text-black rounded-sm ${
           error ? 'input-error shake' : 'input-secondary'
         }`
       }

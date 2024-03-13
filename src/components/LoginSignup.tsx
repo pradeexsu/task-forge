@@ -31,21 +31,22 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
     }
     setLoading(false);
   };
-  if (loading)
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center text-2xl">
         {'Please wait, You will be redirected shortly...'}
       </div>
     );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#282A36] px-4 sm:px-6 lg:px-8 overflow-hidden min-w-[300px]">
-      <div className="max-w-md w-full mt-[-10vh] card px-4 sm:px-8 py-8 shadow-xl bg-gray-50 rounded-none">
+      <div className="max-w-md w-full mt-[-10vh] card px-4 sm:px-8 py-8 shadow-xl bg-gray-50 rounded-sm">
         <h2 className=" text-center text-2xl font-medium text-gray-900 font-monts">
           {signup ? 'Sign up to new account' : 'Sign in to your account'}
         </h2>
         <div className="mt-8 space-y-6">
-          <label className="input flex items-center gap-2 rounded-none">
+          <label className="input flex items-center gap-2 rounded-sm">
             <span className="hidden sm:inline">
               <AlternateEmail />
             </span>
@@ -58,7 +59,7 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
           </label>
 
           {signup && (
-            <label className="input flex items-center gap-2 rounded-none">
+            <label className="input flex items-center gap-2 rounded-sm">
               <span className="hidden sm:inline">
                 <Person />
               </span>
@@ -70,7 +71,7 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
               />
             </label>
           )}
-          <label className="input flex items-center gap-2 rounded-none">
+          <label className="input flex items-center gap-2 rounded-sm">
             <span className="hidden sm:inline">
               <Key />
             </span>
@@ -102,7 +103,7 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
           </h2>
           <div>
             <button
-              className="btn btn-secondary w-full font-bold text-lg text-white rounded-none"
+              className="btn btn-secondary w-full font-bold text-lg text-white rounded-sm"
               onClick={handleSubmit}
             >
               {signup ? 'Sign up' : 'Sign in'}

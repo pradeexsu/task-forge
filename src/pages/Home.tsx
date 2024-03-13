@@ -1,4 +1,4 @@
-import { useTaskStore } from '../store';
+import { useAuthStore, useTaskStore } from '../store';
 import FlexBox from '../components/common/FlexBox';
 import Footer from '../components/common/Footer';
 import NavBar from '../components/common/NavBar';
@@ -9,11 +9,13 @@ import { useEffect } from 'react';
 
 function Home() {
   const { tasks, modalContent } = useTaskStore();
+  const { isAuthenticated } = useAuthStore();
   const { fetchTasks } = useTaskManager();
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    console.log('isAuthenticated', isAuthenticated);
+    if (isAuthenticated) fetchTasks();
+  }, [fetchTasks, isAuthenticated]);
 
   return (
     <FlexBox

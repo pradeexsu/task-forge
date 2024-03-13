@@ -2,21 +2,29 @@ import stackOverflow from '/stack-overflow.svg';
 import github from '/github.svg';
 import linkedin from '/linkedin.svg';
 import { ClassNameType } from '../../typings';
+
 interface FooterProps {
   className?: ClassNameType;
 }
+
 function Footer({ className }: FooterProps) {
   return (
     <footer
       className={
-        'footer footer-center bg-base-300 text-base-content bottom-0 ' +
-        className
+        'footer footer-center bg-success text-base-100 bottom-0 ' + className
       }
     >
       <aside>
         <p>
-          Created by Pradeep Suthar
-          <span className="flex gap-4 justify-center select-none mt-4">
+          Created by{' '}
+          <a
+            href="https://github.com/pradeexsu"
+            className="link link-secondary"
+            target="_blank"
+          >
+            Pradeep Suthar
+          </a>
+          <span className="flex gap-4 justify-center select-none mt-4 ">
             <a href="https://github.com/pradeexsu" target="_blank">
               <img src={github} className="h-7" />
             </a>

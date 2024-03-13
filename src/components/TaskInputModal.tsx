@@ -112,13 +112,15 @@ function TaskInputModal({
           />
           <Button
             onClick={handleAddTask}
-            varient="btn-secondary"
+            varient="btn-success"
             className="ml-auto"
           >
             {actionType}
           </Button>
           <form method="dialog">
-            <button className="btn btn-sm  btn-outline">Close</button>
+            <button className="btn btn-sm btn-success btn-outline">
+              Close
+            </button>
           </form>
         </FlexBox>
       </FlexBox>
