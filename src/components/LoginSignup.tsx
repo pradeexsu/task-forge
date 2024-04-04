@@ -1,37 +1,41 @@
 import {
-  AlternateEmail,
   Key,
   Person,
   Visibility,
   VisibilityOff,
+  AlternateEmail,
 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+import authStore from '../modules/Auth/auth.store';
+import { observer } from 'mobx-react-lite';
 
 type LoginSignupProps = {
   signup?: boolean;
 };
 
 function LoginSignup({ signup = false }: LoginSignupProps) {
+  const { loginUser, signupUser, isLoading } = authStore;
+
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const { loginUser, signupUser } = useAuth();
+  const [user, setUser] = useState({
+    username: '',
+    password: '',
+    email: '',
+  });
 
   const handleSubmit = async () => {
-    if (!email || !password) return;
-    setLoading(true);
     if (signup) {
-      await signupUser({ email, password, username });
+      await signupUser(user);
     } else {
-      await loginUser({ email, password });
+      await loginUser(user);
     }
-    setLoading(false);
   };
-  if (loading) {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center text-2xl">
         {'Please wait, You will be redirected shortly...'}
@@ -52,9 +56,11 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
             </span>
             <input
               type="email"
+              name="email"
               className="grow"
+              value={user.email}
               placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={onChange}
             />
           </label>
 
@@ -65,9 +71,11 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
               </span>
               <input
                 type="text"
+                name="username"
                 className="grow"
+                value={user.username}
                 placeholder="Username"
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={onChange}
               />
             </label>
           )}
@@ -78,9 +86,10 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
             <input
               type={showPassword ? 'text' : 'password'}
               className="grow"
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={user.password}
+              onChange={onChange}
             />
             <button
               type="button"
@@ -115,4 +124,4 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
   );
 }
 
-export default LoginSignup;
+export default observer(LoginSignup);

@@ -1,6 +1,6 @@
 import DeleteTaskConfirmModal from '../components/DeleteTaskConfirmModal';
 import TaskInputModal from '../components/TaskInputModal';
-import { Task } from '../service/typings';
+import { Task } from '../modules/Task/typings';
 import { useTaskStore } from '../store';
 
 function useModal() {
@@ -28,7 +28,12 @@ function useModal() {
     }
   }
 
-  return { openCreateTaskModal, openUpdateTaskModal, openDeleteTaskModal };
+  return {
+    openModal,
+    openCreateTaskModal,
+    openUpdateTaskModal,
+    openDeleteTaskModal,
+  };
 }
 
 export default useModal;

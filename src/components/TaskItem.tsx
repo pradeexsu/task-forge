@@ -4,10 +4,10 @@ import Text from './common/Text';
 import { ChangeEvent, useCallback } from 'react';
 import Button from './common/Button';
 import Select2 from './common/Select';
-import { Task } from '../service/typings';
 import { STATUS_OPTIONS } from '../const';
-import useTaskManager from '../hooks/useTaskManager';
-import useModal from '../hooks/useModal';
+// import useTaskManager from '../hooks/useTaskManager';
+import { Task } from '../modules/Task/typings';
+import taskStore from '../modules/Task/task.store';
 
 interface TaskItemProps {
   data: Task;
@@ -15,17 +15,16 @@ interface TaskItemProps {
 }
 
 function TaskItem({ data, className }: TaskItemProps) {
-  const { title, description, status } = data;
-  const { updateTask } = useTaskManager();
-  const { openUpdateTaskModal, openDeleteTaskModal } = useModal();
+  const { title, description, status, id } = data;
+  const { deleteTaskById } = taskStore;
 
   const onUpdateState = useCallback(
     async (e: ChangeEvent<HTMLSelectElement>) => {
       const status = e.target.value as TaskStatus;
       if (status === data?.status) return;
-      await updateTask({ ...data, status: status });
+      // await updateTask({ ...data, status: status });
     },
-    [data, updateTask]
+    [data]
   );
 
   return (
@@ -52,14 +51,14 @@ function TaskItem({ data, className }: TaskItemProps) {
         />
         <Button
           onClick={() => {
-            openUpdateTaskModal(data);
+            // openUpdateTaskModal(data);
           }}
           className="cursor-pointer ml-auto btn-outline"
           varient="btn-success"
           label="Edit"
         />
         <Button
-          onClick={() => openDeleteTaskModal(data)}
+          onClick={() => id && deleteTaskById(id)}
           className="cursor-pointer btn-outline"
           varient="btn-error"
           label="Delete"

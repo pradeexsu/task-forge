@@ -1,11 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import { AUTHENTICATED_ROUTES, UNAUTHENTICATED_ROUTES } from './router';
-import { useAuthStore } from './store';
 import { useEffect, useState } from 'react';
+import authStore from './modules/Auth/auth.store';
 
 function App() {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated } = authStore;
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const id = setTimeout(() => {
       setLoading(false);

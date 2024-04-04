@@ -1,21 +1,13 @@
-import { useAuthStore, useTaskStore } from '../store';
 import FlexBox from '../components/common/FlexBox';
 import Footer from '../components/common/Footer';
-import NavBar from '../components/common/NavBar';
+import NavBar from '../components/NavBar';
 import TaskItem from '../components/TaskItem';
 import Modal from '../components/common/Modal';
-import useTaskManager from '../hooks/useTaskManager';
-import { useEffect } from 'react';
+import taskStore from '../modules/Task/task.store';
+import { observer } from 'mobx-react-lite';
 
 function Home() {
-  const { tasks, modalContent } = useTaskStore();
-  const { isAuthenticated } = useAuthStore();
-  const { fetchTasks } = useTaskManager();
-
-  useEffect(() => {
-    console.log('isAuthenticated', isAuthenticated);
-    if (isAuthenticated) fetchTasks();
-  }, [fetchTasks, isAuthenticated]);
+  const { tasks, modalContent } = taskStore;
 
   return (
     <FlexBox
@@ -37,4 +29,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default observer(Home);

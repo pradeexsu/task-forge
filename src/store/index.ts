@@ -1,10 +1,15 @@
 import { create } from 'zustand';
 import { AuthStore, TaskStore } from '../typings';
-import { Task } from '../service/typings';
+import { Task } from '../modules/Axios/typings';
 
 export const useTaskStore = create<TaskStore>()((set) => ({
   tasks: [],
   modalContent: undefined,
+  deleteId: undefined,
+  setDeleteId: (deleteId) => set({ deleteId }),
+  updateTaskValue: undefined,
+  setUpdateTaskValue: (updateTaskValue) => set({ updateTaskValue }),
+
   setModalContent: (modalContent) => set({ modalContent }),
   addTask: (task) => set((state) => ({ tasks: [task, ...state.tasks] })),
   deleteTask: (id: string) =>
@@ -21,11 +26,25 @@ export const useTaskStore = create<TaskStore>()((set) => ({
     })),
 }));
 
+export type AuthStore = {
+  token?: string;
+  isAuthenticated?: boolean;
+  userMetaData?: UserMetaData;
+  modalContent: ReactNode;
+  authenticate: () => void;
+  unAuthenticate: () => void;
+  setToken: (token: string) => void;
+  setModalContent: (jsx: ReactNode) => void;
+  setUserMetaData: (metaData?: UserMetaData) => void;
+};
+
 export const useAuthStore = create<AuthStore>()((set) => ({
   user: undefined,
   token: undefined,
   isAuthenticated: false,
   userMetaData: undefined,
+  modalContent: undefined,
+  setModalContent: (modalContent) => set({ modalContent }),
   updateUserMetaData: () => {},
   setToken: (token) => set({ token }),
   logout: () => set({ isAuthenticated: false }),

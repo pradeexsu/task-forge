@@ -1,7 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import LoginSignup from '../components/LoginSignup';
 
 function SignupPage() {
   return <LoginSignup signup />;
 }
 
-export default SignupPage;
+export default observer(SignupPage);
