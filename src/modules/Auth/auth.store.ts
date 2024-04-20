@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthCred, UserMetaData } from './typings';
 import bcrypt from 'bcryptjs';
 import { decodeToken, isExpired } from 'react-jwt';
+import { redirect } from 'react-router-dom';
 
 class AuthStore extends AuthService {
   constructor() {
@@ -85,7 +86,8 @@ class AuthStore extends AuthService {
     } catch (error) {
       this.pushErrorNotification('Something went wrong');
     } finally {
-      this.isLoading = false;
+       this.isLoading = false;
+       location.reload();
     }
   };
 

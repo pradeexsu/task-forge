@@ -24,7 +24,6 @@ function TaskItem({ data, className }: TaskItemProps) {
     async (e: ChangeEvent<HTMLSelectElement>) => {
       const newStatus = e.target.value as TaskStatus;
       if (newStatus === data?.status) return;
-      console.log('data', data)
       await putTask({ ...data, status: newStatus });
     },
     [data]

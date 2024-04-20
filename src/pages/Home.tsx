@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <FlexBox
-      className="h-screen w-full lg:px-[20%] md:px-[10%]"
+      className="h-screen w-full lg:px-[20%] md:px-[10%] px-4"
       direction="column"
     >
       <NavBar />

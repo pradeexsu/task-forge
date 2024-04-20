@@ -7,6 +7,7 @@ import { STATUS_OPTIONS, TASK_INIT_VALUE } from '../const';
 import Select from './common/Select';
 import taskStore from '../modules/Task/task.store';
 import { observer } from 'mobx-react-lite';
+import { title } from 'process';
 
 
 function TaskInputModal() {
@@ -62,12 +63,13 @@ function TaskInputModal() {
         wrap="wrap"
         className="w-full mt-2"
       >
-        <Select
+        {task?.status && <Select
           options={STATUS_OPTIONS}
           name="status"
           value={task?.status}
+          disabled={!task?.title}
           onChange={onChangeHandler}
-        />
+        />}
         <FlexBox gap={5}>
           {actionType === "Update" && <Button
             outline
