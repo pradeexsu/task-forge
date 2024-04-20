@@ -1,28 +1,29 @@
 import { action, computed, makeObservable, observable } from 'mobx';
-import { ReactNode } from 'react';
 import TaskService from './task.service';
 import { TASK_INIT_VALUE } from '../../const';
 import { Task } from './typings';
 
 class TaskStore extends TaskService {
   tasks: Task[] = [];
-  modalContent?: ReactNode;
   deleteTaskId?: string;
   createOrUpdateTaskValue?: Task;
-  isLoading = false;
+  isLoading: boolean = false;
 
   constructor() {
     super();
     makeObservable(this, {
       tasks: observable,
-      modalContent: observable,
       createOrUpdateTaskValue: observable,
+      isLoading: observable,
+      deleteTaskId: observable,
       setUpdateTaskValue: action,
       clearUpdateTaskValue: action,
       addTask: action,
       deleteTaskById: action,
       updateTask: action,
       fetchTasks: action,
+      putTask: action,
+      setCreateOrUpdateTaskId: action,
       getDeleteTaskValue: computed,
     });
   }
@@ -35,22 +36,18 @@ class TaskStore extends TaskService {
   }
 
   setCreateOrUpdateTaskId = async (id?: string) => {
-    if (id) {
-      const taskList = this.tasks.filter((task) => task.id === id);
-      this.createOrUpdateTaskValue =
-        taskList?.length > 0 ? taskList[0] : undefined;
+    if (!id) {
+      this.createOrUpdateTaskValue = TASK_INIT_VALUE;
       return;
     }
-    this.createOrUpdateTaskValue = TASK_INIT_VALUE;
+    const taskList = this.tasks.filter((task) => task.id === id);
+    this.createOrUpdateTaskValue = taskList?.length > 0 ? taskList[0] : undefined;
   };
 
-  setUpdateTaskValue = async (task: Task) => {
+  setUpdateTaskValue = async (task?: Task) => {
     this.createOrUpdateTaskValue = task;
   };
 
-  setModalContent = async (content: ReactNode) => {
-    this.modalContent = content;
-  };
 
   clearUpdateTaskValue = async () => {
     this.createOrUpdateTaskValue = undefined;
@@ -58,8 +55,10 @@ class TaskStore extends TaskService {
 
   addTask = async (task: Task) => {
     const res = await this.postTask(task);
+
     if (res?.success) {
-      this.tasks.unshift(task);
+      task.id = res.data?.id
+      this.tasks = [...this.tasks, task];
     } else {
       console.log(res);
       this.pushErrorNotification(res?.message);
@@ -77,13 +76,24 @@ class TaskStore extends TaskService {
 
   updateTask = async (updatedTask: Task) => {
     const res = await this.patchTask(updatedTask);
-    if (!res?.success) {
+    if (res?.success) {
       this.tasks = this.tasks.map((task) =>
         task?.id !== updatedTask?.id ? task : updatedTask
       );
     } else {
       this.pushErrorNotification(res?.message);
     }
+  };
+
+  putTask = async (task: Task) => {
+    this.setUpdateTaskValue(undefined);
+    console.log('put: ', task);
+    if (task?.id) {
+      await this.updateTask(task);
+    } else {
+      await this.addTask(task);
+    }
+    this.setUpdateTaskValue(TASK_INIT_VALUE)
   };
 
   fetchTasks = async () => {
@@ -93,6 +103,7 @@ class TaskStore extends TaskService {
     } else {
       this.pushErrorNotification(res?.message);
     }
+    this.setUpdateTaskValue(TASK_INIT_VALUE);
   };
 }
 

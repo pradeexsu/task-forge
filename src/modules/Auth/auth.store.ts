@@ -103,7 +103,7 @@ class AuthStore extends AuthService {
 
   private encryptPlainText = async (plainText: string) => {
     try {
-      const salt = '$2a$10$FbV4XQlkq/hL7JQwAVQ5uu';
+      const salt = import.meta.env.VITE_ENCRYPTION_SALT;
       return await bcrypt.hashSync(plainText, salt);
     } catch (error) {
       console.error('Encryption error:', error);

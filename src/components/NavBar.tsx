@@ -1,7 +1,8 @@
-import { Add } from '@mui/icons-material';
 import { ClassNameType } from '../typings';
-import taskStore from '../modules/Task/task.store';
 import authStore from '../modules/Auth/auth.store';
+import { observer } from 'mobx-react-lite';
+import Button from './common/Button';
+import Text from './common/Text';
 
 interface NavBarProps {
   className?: ClassNameType;
@@ -10,33 +11,20 @@ interface NavBarProps {
 function NavBar({ className = '' }: NavBarProps) {
   const { userMetaData, logoutUser } = authStore;
 
-  const handleCreateTask = () => {
-    taskStore.addTask({
-      title: 'New Task',
-      description: 'New Task Description',
-      status: 'open',
-    });
-  };
-
   return (
-    <div className={'navbar bg-success ' + className}>
+    <div className={'navbar bg-success' + className}>
       <div className="flex-1">
-        <a
-          className="btn btn-ghost text-xl text-white"
-          onClick={handleCreateTask}
-        >
-          <Add fontSize="large" />
-          Add Task
-        </a>
+        <Button className="btn glass " >
+          <Text className='text-sm'> Task Forge</Text>
+        </Button>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end ">
           <div
-            tabIndex={0}
             role="button"
             className="btn btn-ghost btn-circle avatar "
           >
-            <div className="w-10 rounded-full">
+            <div className="w-8 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
                 src={`https://gravatar.com/avatar/${userMetaData?.id}?d=identicon`}
@@ -51,7 +39,6 @@ function NavBar({ className = '' }: NavBarProps) {
             </li>
             <li>
               <a
-                tabIndex={0}
                 href="#"
                 className="justify-between"
                 onClick={logoutUser}
@@ -61,9 +48,10 @@ function NavBar({ className = '' }: NavBarProps) {
             </li>
           </ul>
         </div>
+
       </div>
     </div>
   );
 }
 
-export default NavBar;
+export default observer(NavBar);

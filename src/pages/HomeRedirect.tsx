@@ -1,6 +1,5 @@
-import { observer } from 'mobx-react-lite';
 import { Navigate } from 'react-router-dom';
 
-export default observer(function HomeRedirect() {
+export default function HomeRedirect() {
   return <Navigate to="/home" />;
-});
+};

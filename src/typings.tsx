@@ -1,5 +1,4 @@
 import { HTMLProps, ReactNode } from 'react';
-import { Task } from './modules/Axios/typings';
 
 export type ClassNameType = HTMLProps<HTMLElement>['className'];
 

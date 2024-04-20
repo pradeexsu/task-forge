@@ -11,6 +11,8 @@ interface ButtonProps {
   size?: 'btn-xs' | 'btn-sm' | 'btn-lg';
   tabIndex?: number;
   rounded?: boolean;
+  outline?: boolean;
+  disabled?: boolean;
 }
 
 function Button({
@@ -22,6 +24,8 @@ function Button({
   tabIndex,
   varient = 'btn-info',
   rounded = false,
+  outline = false,
+  disabled = false,
 }: ButtonProps) {
   return (
     <div
@@ -29,6 +33,9 @@ function Button({
       onClick={onClick}
       className={`btn ${varient} 
       ${size} 
+      ${disabled ? 'btn-disabled ' : 'cursor-pointer'}
+      ${outline &&'btn-outline'}
+      
       ${rounded && ' rounded-s-badge rounded-e-badge '}
       ${className} rounded-lg `}
       tabIndex={tabIndex}
