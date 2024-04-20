@@ -11,6 +11,7 @@ interface SelectProps {
   disabled?: boolean;
   value?: string;
   name?: string;
+  defaultValue?: string;
   onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 

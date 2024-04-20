@@ -85,8 +85,12 @@ class AuthStore extends AuthService {
     } catch (error) {
       this.pushErrorNotification('Something went wrong');
     } finally {
+<<<<<<< HEAD
        this.isLoading = false;
        location.reload();
+=======
+      this.isLoading = false;
+>>>>>>> 2d64651c7189a62421c29eca6956236c3a68432a
     }
   };
 

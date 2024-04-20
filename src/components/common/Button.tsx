@@ -13,7 +13,6 @@ interface ButtonProps {
   rounded?: boolean;
   outline?: boolean;
   disabled?: boolean;
-  ref?:any;
 }
 
 function Button({

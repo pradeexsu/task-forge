@@ -60,6 +60,10 @@ class TaskStore extends TaskService {
       task.id = res.data?.id
       this.tasks = [...this.tasks, task];
     } else {
+<<<<<<< HEAD
+=======
+      console.log(res);
+>>>>>>> 2d64651c7189a62421c29eca6956236c3a68432a
       this.pushErrorNotification(res?.message);
     }
   };
@@ -85,14 +89,23 @@ class TaskStore extends TaskService {
   };
 
   putTask = async (task: Task) => {
+<<<<<<< HEAD
     if (task?.id === this.createOrUpdateTaskValue?.id) {
       this.setUpdateTaskValue(TASK_INIT_VALUE);
     }
+=======
+    this.setUpdateTaskValue(undefined);
+    console.log('put: ', task);
+>>>>>>> 2d64651c7189a62421c29eca6956236c3a68432a
     if (task?.id) {
       await this.updateTask(task);
     } else {
       await this.addTask(task);
     }
+<<<<<<< HEAD
+=======
+    this.setUpdateTaskValue(TASK_INIT_VALUE)
+>>>>>>> 2d64651c7189a62421c29eca6956236c3a68432a
   };
 
   fetchTasks = async () => {

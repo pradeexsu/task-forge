@@ -89,7 +89,6 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
               name="password"
               placeholder="Password"
               value={user?.password}
-              onChange={onChange}
             />
             <button
               type="button"
