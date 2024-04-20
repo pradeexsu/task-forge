@@ -54,8 +54,14 @@ class TaskStore extends TaskService {
   };
 
   addTask = async (task: Task) => {
-    const res = await this.postTask(task);
 
+    const promise = this.postTask(task);
+    this.pushAsyncNotification(promise, {
+      pending: 'Creating task...',
+      success: 'New task created!',
+      error: 'Failed to create new task'
+    })
+    const res = await promise
     if (res?.success) {
       task.id = res.data?.id
       this.tasks = [...this.tasks, task];
@@ -65,7 +71,15 @@ class TaskStore extends TaskService {
   };
 
   deleteTaskById = async (id: string) => {
-    const res = await this.deleteTask(id);
+    const promise = this.deleteTask(id);
+
+    this.pushAsyncNotification(promise, {
+      pending: 'Deleting task...',
+      success: 'Task deleted!',
+      error: 'Failed to delete task'
+    })
+    const res = await promise;
+
     if (res?.success) {
       this.tasks = this.tasks.filter((task) => task?.id !== id);
     } else {
@@ -74,7 +88,14 @@ class TaskStore extends TaskService {
   };
 
   updateTask = async (updatedTask: Task) => {
-    const res = await this.patchTask(updatedTask);
+    const promise = this.patchTask(updatedTask);
+
+    this.pushAsyncNotification(promise, {
+      pending: 'Updating task...',
+      success: 'Task updated!',
+      error: 'Failed to update task'
+    })
+    const res = await promise;
     if (res?.success) {
       this.tasks = this.tasks.map((task) =>
         task?.id !== updatedTask?.id ? task : updatedTask

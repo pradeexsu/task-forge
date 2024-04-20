@@ -7,11 +7,11 @@ export default class NotificationService {
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
   };
 
-  constructor() {}
+  constructor() { }
 
   protected async pushAsyncNotification(
     promise: Promise<unknown>,
@@ -29,7 +29,7 @@ export default class NotificationService {
       pending,
       success,
       error,
-    });
+    }, this.options);
   }
 
   protected async pushInfoNotification(content: ToastDataType) {
