@@ -1,4 +1,5 @@
 import { HTMLProps, ReactNode } from 'react';
+import { Task } from './modules/Task/typings';
 
 export type ClassNameType = HTMLProps<HTMLElement>['className'];
 
