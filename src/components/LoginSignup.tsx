@@ -45,12 +45,12 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#282A36] px-4 sm:px-6 lg:px-8 overflow-hidden min-w-[300px]">
-      <div className="max-w-md w-full mt-[-10vh] card px-4 sm:px-8 py-8 shadow-xl bg-gray-50 rounded-sm">
+      <div className="max-w-md w-full mt-[-10vh] card px-4  py-8 shadow-xl bg-gray-50 rounded-sm">
         <h2 className=" text-center text-2xl font-medium text-gray-900 font-monts">
           {signup ? 'Sign up to new account' : 'Sign in to your account'}
         </h2>
         <div className="mt-8 space-y-6">
-          <label className="input flex items-center gap-2 rounded-sm">
+          <label className="input flex items-center gap-2 rounded-sm focus-within:outline-0">
             <span className="hidden sm:inline">
               <AlternateEmail />
             </span>
@@ -65,7 +65,7 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
           </label>
 
           {signup && (
-            <label className="input flex items-center gap-2 rounded-sm">
+            <label className="input flex items-center gap-2 rounded-sm focus-within:outline-0">
               <span className="hidden sm:inline">
                 <Person />
               </span>
@@ -79,27 +79,26 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
               />
             </label>
           )}
-          <label className="input flex items-center gap-2 rounded-sm">
+          <label className="input flex items-center gap-2 rounded-sm focus-within:outline-0">
             <span className="hidden sm:inline">
               <Key />
             </span>
             <input
               type={showPassword ? 'text' : 'password'}
-              className="grow"
+              className="grow "
               name="password"
               placeholder="Password"
-              value={user.password}
-              onChange={onChange}
+              value={user?.password}
             />
             <button
               type="button"
-              className="btn btn-link mr-[-15px] text-white "
+              className="btn btn-link mr-[-15px]"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
-                <VisibilityOff color="inherit" />
+                <VisibilityOff color='action'/>
               ) : (
-                <Visibility color="inherit" />
+                <Visibility color='action'/>
               )}
             </button>
           </label>

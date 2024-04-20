@@ -62,12 +62,13 @@ function TaskInputModal() {
         wrap="wrap"
         className="w-full mt-2"
       >
-        <Select
+        {task?.status && <Select
           options={STATUS_OPTIONS}
           name="status"
           value={task?.status}
+          disabled={!task?.title}
           onChange={onChangeHandler}
-        />
+        />}
         <FlexBox gap={5}>
           {actionType === "Update" && <Button
             outline

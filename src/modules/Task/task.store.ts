@@ -60,7 +60,6 @@ class TaskStore extends TaskService {
       task.id = res.data?.id
       this.tasks = [...this.tasks, task];
     } else {
-      console.log(res);
       this.pushErrorNotification(res?.message);
     }
   };
@@ -86,14 +85,14 @@ class TaskStore extends TaskService {
   };
 
   putTask = async (task: Task) => {
-    this.setUpdateTaskValue(undefined);
-    console.log('put: ', task);
+    if (task?.id === this.createOrUpdateTaskValue?.id) {
+      this.setUpdateTaskValue(TASK_INIT_VALUE);
+    }
     if (task?.id) {
       await this.updateTask(task);
     } else {
       await this.addTask(task);
     }
-    this.setUpdateTaskValue(TASK_INIT_VALUE)
   };
 
   fetchTasks = async () => {
