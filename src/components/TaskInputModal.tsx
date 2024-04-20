@@ -7,7 +7,6 @@ import { STATUS_OPTIONS, TASK_INIT_VALUE } from '../const';
 import Select from './common/Select';
 import taskStore from '../modules/Task/task.store';
 import { observer } from 'mobx-react-lite';
-import { title } from 'process';
 
 
 function TaskInputModal() {
