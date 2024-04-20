@@ -1,18 +1,20 @@
 interface ModalPrpops {
   children: React.ReactNode;
   closeOnOutsideClick?: boolean;
+  open?: boolean;
 }
 
-function Modal({ children, closeOnOutsideClick = true }: ModalPrpops) {
+function Modal({ children }: ModalPrpops) {
   return (
-    <dialog id="my_modal_2" className="modal ">
-      <div className="modal-box rounded-sm">{children}</div>
-      {closeOnOutsideClick && (
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
-      )}
-    </dialog>
+    <>
+      <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+      <div className="modal" role="dialog">
+        <div className="modal-box">
+          <h3 className="text-lg font-bold">Hello!</h3>
+          <p className="py-4">{children}</p>
+        </div>
+      </div>
+    </>
   );
 }
 

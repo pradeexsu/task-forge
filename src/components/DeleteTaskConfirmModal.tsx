@@ -1,33 +1,21 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import Button from './common/Button';
 import FlexBox from './common/FlexBox';
-import useTaskManager from '../hooks/useTaskManager';
-import { useTaskStore } from '../store';
+import taskStore from '../modules/Task/task.store';
 
 interface DeleteTaskConfirmModalProps {
   id: string;
   title: string;
 }
 
-function DeleteTaskConfirmModal({ id, title }: DeleteTaskConfirmModalProps) {
-  const { deleteTask } = useTaskManager();
-  const { setModalContent } = useTaskStore();
-  const [loading, setLoading] = useState(false);
+function DeleteTaskConfirmModal({ title, id }: DeleteTaskConfirmModalProps) {
+  const { deleteTaskById, isLoading } = taskStore;
 
   const onDelete = async () => {
-    setLoading(true);
-    const success = await deleteTask(id);
-
-    if (success) {
-      setModalContent(<h3 className="font-bold text-lg">Task Deleted!</h3>);
-    } else {
-      setModalContent(
-        <h3 className="font-bold text-lg">Failed to Delete task!</h3>
-      );
-    }
+    deleteTaskById(id);
   };
 
-  if (loading) {
+  if (isLoading) {
     return <h3 className="font-bold text-lg">Deleting your task...</h3>;
   }
   return (

@@ -1,5 +1,5 @@
 import { HTMLProps, ReactNode } from 'react';
-import { Task } from './service/typings';
+import { Task } from './modules/Task/typings';
 
 export type ClassNameType = HTMLProps<HTMLElement>['className'];
 
@@ -23,6 +23,10 @@ export type ButtonVarient =
 
 export type TaskStore = {
   tasks: Task[];
+  deleteId: string | undefined;
+  setDeleteId: (id?: string) => void;
+  updateTaskValue: Task | undefined;
+  setUpdateTaskValue: (task?: Task) => void;
   modalContent: ReactNode;
   addTask: (task: Task) => void;
   deleteTask: (id: string) => void;
@@ -47,8 +51,10 @@ export type AuthStore = {
   token?: string;
   isAuthenticated?: boolean;
   userMetaData?: UserMetaData;
+  modalContent: ReactNode;
   authenticate: () => void;
   unAuthenticate: () => void;
   setToken: (token: string) => void;
+  setModalContent: (jsx: ReactNode) => void;
   setUserMetaData: (metaData?: UserMetaData) => void;
 };

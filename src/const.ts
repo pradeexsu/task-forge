@@ -1,4 +1,4 @@
-import { Task } from './service/typings';
+import { Task } from './modules/Task/typings';
 import { BadgeVariant, ButtonVarient, TaskStatus } from './typings';
 
 export const STATUS_OPTIONS = [
