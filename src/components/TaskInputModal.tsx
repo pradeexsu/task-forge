@@ -8,23 +8,22 @@ import Select from './common/Select';
 import taskStore from '../modules/Task/task.store';
 import { observer } from 'mobx-react-lite';
 
-
 function TaskInputModal() {
   const {
     setUpdateTaskValue,
     createOrUpdateTaskValue: task,
-    putTask
+    putTask,
   } = taskStore;
 
   const [error, setError] = useState(false);
-  const actionType = task?.id ? "Update" : "Create";
+  const actionType = task?.id ? 'Update' : 'Create';
 
   const closeModal = async () => {
-    setUpdateTaskValue(TASK_INIT_VALUE)
+    setUpdateTaskValue(TASK_INIT_VALUE);
   };
 
   const onChangeHandler = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
     if (e.target.name == 'task') setError(false);
     setUpdateTaskValue({
@@ -34,15 +33,11 @@ function TaskInputModal() {
   };
 
   const handleSubmitTask = async () => {
-    task && await putTask(task);
-  }
+    task && (await putTask(task));
+  };
 
   return (
-    <FlexBox
-      direction="column"
-      gap={5}
-      className={'w-full mt-2 z-0'}
-    >
+    <FlexBox direction="column" gap={5} className={'w-full mt-2  px-2'}>
       <InputFields
         placeholder="Task..."
         value={task?.title}
@@ -62,22 +57,27 @@ function TaskInputModal() {
         wrap="wrap"
         className="w-full mt-2"
       >
-        {task?.status && <Select
-          options={STATUS_OPTIONS}
-          name="status"
-          value={task?.status}
-          disabled={!task?.title}
-          onChange={onChangeHandler}
-        />}
+        {task?.status && (
+          <Select
+            options={STATUS_OPTIONS}
+            name="status"
+            value={task?.status}
+            disabled={!task?.title}
+            onChange={onChangeHandler}
+            direction="bottom"
+          />
+        )}
         <FlexBox gap={5}>
-          {actionType === "Update" && <Button
-            outline
-            onClick={closeModal}
-            varient="btn-success"
-            className="ml-auto"
-          >
-            Cancel
-          </Button>}
+          {actionType === 'Update' && (
+            <Button
+              outline
+              onClick={closeModal}
+              varient="btn-success"
+              className="ml-auto"
+            >
+              Cancel
+            </Button>
+          )}
           <Button
             disabled={!task?.title}
             onClick={handleSubmitTask}

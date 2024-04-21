@@ -14,7 +14,7 @@ export class AuthService extends NotificationService {
     try {
       const { data } = (await axiosAuthInstance.post(
         'login',
-        cred
+        cred,
       )) as AxiosResponse<ApiResponse<UserMetaData>>;
       return data;
     } catch (error) {
@@ -26,7 +26,7 @@ export class AuthService extends NotificationService {
     try {
       const { data } = await axiosAuthInstance.post<ApiResponse<UserMetaData>>(
         'signup',
-        cred
+        cred,
       );
       return data;
     } catch (error) {

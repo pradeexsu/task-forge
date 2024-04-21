@@ -5,7 +5,7 @@ interface InputFieldsProps {
   value?: string;
   name?: string;
   onChange?: (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => void;
 }
 

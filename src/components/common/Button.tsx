@@ -34,7 +34,7 @@ function Button({
       className={`btn ${varient} 
       ${size} 
       ${disabled ? 'btn-disabled ' : 'cursor-pointer'}
-      ${outline &&'btn-outline'}
+      ${outline && 'btn-outline'}
       
       ${rounded && ' rounded-s-badge rounded-e-badge '}
       ${className} rounded-lg `}

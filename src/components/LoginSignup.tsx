@@ -97,9 +97,9 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
-                <VisibilityOff color='action'/>
+                <VisibilityOff color="action" />
               ) : (
-                <Visibility color='action'/>
+                <Visibility color="action" />
               )}
             </button>
           </label>

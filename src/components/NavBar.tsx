@@ -14,16 +14,13 @@ function NavBar({ className = '' }: NavBarProps) {
   return (
     <div className={'navbar bg-success' + className}>
       <div className="flex-1">
-        <Button className="btn glass " >
-          <Text className='text-sm'> Task Forge</Text>
+        <Button className="btn glass ">
+          <Text className="text-sm"> Task Forge</Text>
         </Button>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end ">
-          <div
-            role="button"
-            className="btn btn-ghost btn-circle avatar "
-          >
+          <div role="button" className="btn btn-ghost btn-circle avatar ">
             <div className="w-8 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
@@ -38,17 +35,12 @@ function NavBar({ className = '' }: NavBarProps) {
               </a>
             </li>
             <li>
-              <a
-                href="#"
-                className="justify-between"
-                onClick={logoutUser}
-              >
+              <a href="#" className="justify-between" onClick={logoutUser}>
                 Logout
               </a>
             </li>
           </ul>
         </div>
-
       </div>
     </div>
   );

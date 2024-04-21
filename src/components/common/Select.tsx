@@ -12,16 +12,23 @@ interface SelectProps {
   value?: string;
   name?: string;
   defaultValue?: string;
+  direction?: 'top' | 'bottom';
   onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-function Select({ options, value, onChange, name, disabled = false }: SelectProps) {
-
+function Select({
+  options,
+  value,
+  onChange,
+  name,
+  disabled = false,
+  direction = 'top',
+}: SelectProps) {
   return (
-    <div className="dropdown dropdown-top" >
+    <div className={`dropdown dropdown-${direction}`}>
       <Button
         tabIndex={0}
-        size='btn-xs'
+        size="btn-xs"
         className={`rounded-s-badge rounded-e-badge z-50 ${disabled ? ' btn-disabled ' : ' cursor-pointer'}`}
         varient={STATUS_BUTTUN_MAPPING[value as TaskStatus]}
       >
@@ -41,7 +48,7 @@ function Select({ options, value, onChange, name, disabled = false }: SelectProp
                   value: value,
                   name: name,
                 },
-              } as ChangeEvent<HTMLSelectElement>)
+              } as ChangeEvent<HTMLSelectElement>);
             }}
           >
             <a className="hover:bg-gray-300">{label}</a>

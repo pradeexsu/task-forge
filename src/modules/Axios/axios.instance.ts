@@ -22,7 +22,7 @@ axiosAuthInstance.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 axiosInstance.interceptors.request.use(
@@ -38,7 +38,7 @@ axiosInstance.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 axiosAuthInstance.interceptors.response.use(
@@ -52,5 +52,5 @@ axiosAuthInstance.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );

@@ -11,22 +11,22 @@ function Home() {
   const { tasks, fetchTasks } = taskStore;
 
   useEffect(() => {
-    fetchTasks()
-  }, [fetchTasks])
+    fetchTasks();
+  }, [fetchTasks]);
 
   return (
     <FlexBox
-      className="h-screen w-full lg:px-[20%] md:px-[10%] px-4"
+      className="h-screen w-full lg:px-[20%] md:px-[10%]"
       direction="column"
     >
       <NavBar />
       <TaskInputModal />
       <FlexBox
         direction="column"
-        className=" justify-center w-full overflow-y-auto gap-2 min-h-[100vh-112px-266px] mt-2"
+        className=" justify-center w-full overflow-y-auto gap-2 h-full mt-2 px-2"
       >
-        {tasks?.map((task) => (
-          <TaskItem data={task} key={task?.id} />
+        {tasks?.map((task, idx) => (
+          <TaskItem data={task} key={task?.id} first={idx === 0} />
         ))}
       </FlexBox>
       <Footer className="h-[112px] mt-auto" />

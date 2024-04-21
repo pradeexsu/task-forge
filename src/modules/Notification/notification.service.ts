@@ -11,7 +11,7 @@ export default class NotificationService {
     draggable: true,
   };
 
-  constructor() { }
+  constructor() {}
 
   protected async pushAsyncNotification(
     promise: Promise<unknown>,
@@ -23,13 +23,17 @@ export default class NotificationService {
       pending: string;
       success: string;
       error: string;
-    }
+    },
   ) {
-    toast.promise(promise, {
-      pending,
-      success,
-      error,
-    }, this.options);
+    toast.promise(
+      promise,
+      {
+        pending,
+        success,
+        error,
+      },
+      this.options,
+    );
   }
 
   protected async pushInfoNotification(content: ToastDataType) {

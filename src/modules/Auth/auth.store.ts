@@ -65,7 +65,7 @@ class AuthStore extends AuthService {
       this.isLoading = true;
       if (!email || !pwd || !username) {
         this.pushErrorNotification(
-          'Please provide email, password, and username'
+          'Please provide email, password, and username',
         );
         return;
       }
@@ -85,8 +85,8 @@ class AuthStore extends AuthService {
     } catch (error) {
       this.pushErrorNotification('Something went wrong');
     } finally {
-       this.isLoading = false;
-       location.reload();
+      //  this.isLoading = false;
+      location.reload();
     }
   };
 

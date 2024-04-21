@@ -18,5 +18,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </NotificationProvider>
       </BrowserRouter>
     </PingProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

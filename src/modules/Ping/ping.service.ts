@@ -9,9 +9,9 @@ class PingService extends NotificationService {
   }
   ping = async () => {
     try {
-      const res = (await axiosAuthInstance.get(
-        'ping',
-      )) as AxiosResponse<ApiResponse<unknown>>;
+      const res = (await axiosAuthInstance.get('ping')) as AxiosResponse<
+        ApiResponse<unknown>
+      >;
 
       if (res.status <= 299 && res.status >= 200) {
         // this.pushInfoNotification('Service Connected!')
@@ -21,7 +21,7 @@ class PingService extends NotificationService {
     } catch (error) {
       return false;
     }
-  }
+  };
 }
 
 export default new PingService();

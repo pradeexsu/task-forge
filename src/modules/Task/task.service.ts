@@ -10,9 +10,8 @@ export default class TaskService extends NotificationService {
   }
   protected async getTasks(): Promise<ApiResponse<TaskListData>> {
     try {
-      const response = await axiosInstance.get<ApiResponse<TaskListData>>(
-        'tasks'
-      );
+      const response =
+        await axiosInstance.get<ApiResponse<TaskListData>>('tasks');
       return response.data;
     } catch (error) {
       return COMMON_ERROR;
@@ -23,7 +22,7 @@ export default class TaskService extends NotificationService {
     try {
       const response = await axiosInstance.post<ApiResponse<Task>>(
         'tasks',
-        task
+        task,
       );
       return response.data;
     } catch (error) {
@@ -35,7 +34,7 @@ export default class TaskService extends NotificationService {
     try {
       const response = await axiosInstance.patch<ApiResponse>(
         `tasks/${task?.id}`,
-        task
+        task,
       );
       return response.data;
     } catch (error) {

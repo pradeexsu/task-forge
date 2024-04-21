@@ -17,11 +17,10 @@ function PingProvider({ children }: AuthProviderProps) {
 
   const pingingUntilBackendIsDown = () => {
     if (ping.current === false) {
-      pingService.ping()
-        .then(success => ping.current = success)
+      pingService.ping().then((success) => (ping.current = success));
     }
     return pingingUntilBackendIsDown;
-  }
+  };
 
   return <div>{children}</div>;
 }

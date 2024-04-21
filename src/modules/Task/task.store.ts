@@ -30,7 +30,7 @@ class TaskStore extends TaskService {
 
   get getDeleteTaskValue() {
     const taskList = this.tasks.filter(
-      (task) => task?.id === this.deleteTaskId
+      (task) => task?.id === this.deleteTaskId,
     );
     return taskList?.length > 0 ? taskList[0] : undefined;
   }
@@ -41,29 +41,28 @@ class TaskStore extends TaskService {
       return;
     }
     const taskList = this.tasks.filter((task) => task.id === id);
-    this.createOrUpdateTaskValue = taskList?.length > 0 ? taskList[0] : undefined;
+    this.createOrUpdateTaskValue =
+      taskList?.length > 0 ? taskList[0] : undefined;
   };
 
   setUpdateTaskValue = async (task?: Task) => {
     this.createOrUpdateTaskValue = task;
   };
 
-
   clearUpdateTaskValue = async () => {
     this.createOrUpdateTaskValue = undefined;
   };
 
   addTask = async (task: Task) => {
-
     const promise = this.postTask(task);
     this.pushAsyncNotification(promise, {
       pending: 'Creating task...',
       success: 'New task created!',
-      error: 'Failed to create new task'
-    })
-    const res = await promise
+      error: 'Failed to create new task',
+    });
+    const res = await promise;
     if (res?.success) {
-      task.id = res.data?.id
+      task.id = res.data?.id;
       this.tasks = [...this.tasks, task];
     } else {
       this.pushErrorNotification(res?.message);
@@ -76,8 +75,8 @@ class TaskStore extends TaskService {
     this.pushAsyncNotification(promise, {
       pending: 'Deleting task...',
       success: 'Task deleted!',
-      error: 'Failed to delete task'
-    })
+      error: 'Failed to delete task',
+    });
     const res = await promise;
 
     if (res?.success) {
@@ -93,12 +92,12 @@ class TaskStore extends TaskService {
     this.pushAsyncNotification(promise, {
       pending: 'Updating task...',
       success: 'Task updated!',
-      error: 'Failed to update task'
-    })
+      error: 'Failed to update task',
+    });
     const res = await promise;
     if (res?.success) {
       this.tasks = this.tasks.map((task) =>
-        task?.id !== updatedTask?.id ? task : updatedTask
+        task?.id !== updatedTask?.id ? task : updatedTask,
       );
     } else {
       this.pushErrorNotification(res?.message);
