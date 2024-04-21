@@ -49,6 +49,7 @@ class AuthStore extends AuthService {
       if (res?.success) {
         this.authenticate();
         this.setUserMetaData(res.data);
+        location.reload();
       } else {
         this.pushErrorNotification(res.message);
       }
@@ -79,14 +80,14 @@ class AuthStore extends AuthService {
       if (res?.success) {
         this.authenticate();
         this.setUserMetaData(res.data);
+        location.reload();
       } else {
         this.pushErrorNotification(res.message);
       }
     } catch (error) {
       this.pushErrorNotification('Something went wrong');
     } finally {
-      //  this.isLoading = false;
-      location.reload();
+      this.isLoading = false;
     }
   };
 
@@ -105,6 +106,7 @@ class AuthStore extends AuthService {
   private encryptPlainText = async (plainText: string) => {
     try {
       const salt = import.meta.env.VITE_ENCRYPTION_SALT;
+      // const salfy = bcrypt.genSaltSync();
       return await bcrypt.hashSync(plainText, salt);
     } catch (error) {
       console.error('Encryption error:', error);
