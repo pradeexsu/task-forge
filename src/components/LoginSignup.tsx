@@ -15,7 +15,7 @@ type LoginSignupProps = {
 };
 
 function LoginSignup({ signup = false }: LoginSignupProps) {
-  const { loginUser, signupUser, isLoading } = authStore;
+  const { loginUser, signupUser, isLoading, validateUser } = authStore;
 
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
@@ -25,6 +25,8 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
   });
 
   const handleSubmit = async () => {
+    if (!validateUser(user, signup)) return;
+
     if (signup) {
       await signupUser(user);
     } else {
@@ -114,6 +116,7 @@ function LoginSignup({ signup = false }: LoginSignupProps) {
             <button
               className="btn btn-secondary w-full font-bold text-lg text-white rounded-sm"
               onClick={handleSubmit}
+              disabled={!user || !user?.email || !user?.password}
             >
               {signup ? 'Sign up' : 'Sign in'}
             </button>

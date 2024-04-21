@@ -20,7 +20,11 @@ function NavBar({ className = '' }: NavBarProps) {
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end ">
-          <div role="button" className="btn btn-ghost btn-circle avatar ">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar "
+          >
             <div className="w-8 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
@@ -28,7 +32,10 @@ function NavBar({ className = '' }: NavBarProps) {
               />
             </div>
           </div>
-          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-lg w-52">
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-lg w-52"
+          >
             <li>
               <a href="#" className="justify-between">
                 {userMetaData?.username}
